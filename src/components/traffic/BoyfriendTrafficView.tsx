@@ -17,7 +17,7 @@ export default function BoyfriendTrafficView() {
   const [showAllEvents, setShowAllEvents] = useLocalStorage('showAll_traffic', false)
 
   if (loading || !data) {
-    return <div className="text-center py-12 text-stone-400">Loading...</div>
+    return <div className="text-center py-12 text-stone-400">loading...</div>
   }
 
   return (

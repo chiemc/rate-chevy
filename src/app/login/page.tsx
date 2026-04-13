@@ -18,14 +18,6 @@ export default function LoginPage() {
     }
   }, [user, profile, loading, router])
 
-  if (loading) {
-    return (
-      <div className="flex h-full items-center justify-center bg-orange-50">
-        <div className="text-4xl animate-pulse">⭐</div>
-      </div>
-    )
-  }
-
   return (
     <div className="flex min-h-full flex-col items-center justify-center bg-orange-50 px-6 py-12">
       <LoginForm />

@@ -25,9 +25,19 @@ export default function LoginForm() {
         await createUserWithEmailAndPassword(auth, email, password)
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Something went wrong'
-      setError(msg.replace('Firebase: ', '').replace(/\(auth\/.*\)\.?/, '').trim())
-    } finally {
+      const code = (err as { code?: string })?.code
+      if (code === 'auth/email-already-in-use') {
+        setError('an account already exists under this email. try signing in')
+      } else if (
+        code === 'auth/user-not-found' ||
+        code === 'auth/wrong-password' ||
+        code === 'auth/invalid-credential' ||
+        code === 'auth/invalid-email'
+      ) {
+        setError('your email/password is incorrect, or your account does not exist')
+      } else {
+        setError('something went wrong, please try again')
+      }
       setLoading(false)
     }
   }

@@ -22,7 +22,7 @@ export default function OnboardingPage() {
     }
   }, [user, profile, loading, router])
 
-  if (loading) {
+  if (loading || profile?.coupleId) {
     return (
       <div className="flex h-full items-center justify-center bg-orange-50">
         <div className="text-4xl animate-pulse">⭐</div>
@@ -50,7 +50,7 @@ export default function OnboardingPage() {
               <div className="text-2xl mb-2">👑</div>
               <div className="font-semibold text-stone-800">i'm jen</div>
               <div className="text-sm text-stone-500 mt-1">
-                i'll be the one doing the evaluating
+                i'll be the one evaluating
               </div>
             </button>
 
@@ -61,7 +61,7 @@ export default function OnboardingPage() {
               <div className="text-2xl mb-2">💌</div>
               <div className="font-semibold text-stone-800">i'm chevy</div>
               <div className="text-sm text-stone-500 mt-1">
-                i'll be the one being evaluated
+                i'll be the one getting evaluated
               </div>
             </button>
           </div>

@@ -34,6 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const unsubAuth = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser)
+      setLoading(true)
 
       if (unsubProfile) {
         unsubProfile()
@@ -47,12 +48,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       unsubProfile = onSnapshot(doc(db, 'users', firebaseUser.uid), (snap) => {
-        // Ignore a cache miss — wait for the server to confirm the document
-        // really doesn't exist before we stop loading. Without this, a cold
-        // cache fires exists()=false immediately and the login page redirects
-        // to onboarding before the real profile arrives.
-        if (!snap.exists() && snap.metadata.fromCache) return
-
         setProfile(snap.exists() ? ({ uid: firebaseUser.uid, ...snap.data() } as UserProfile) : null)
         setLoading(false)
       })

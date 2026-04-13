@@ -64,12 +64,12 @@ export default function SettingsPage() {
         {coupleCode ? (
           <div className="text-center">
             <p className="text-stone-500 text-sm mb-2">share this with chevy:</p>
-            <p className="text-3xl font-bold tracking-widest text-pink-500 bg-pink-50 py-3 rounded-2xl">
+            <p className="text-3xl font-bold tracking-widest text-stone-700 bg-orange-50 py-3 rounded-2xl">
               {coupleCode}
             </p>
             <button
-              onClick={() => navigator.share?.({ title: 'ratingchevy.com', text: `ratingchevy.com use code ${coupleCode} so i can monitor your behavior boy` })}
-              className="mt-3 text-pink-500 text-sm font-medium"
+              onClick={() => navigator.share?.({ title: 'ratingchevy.com', text: `use code ${coupleCode} so i can monitor your behavior boy` })}
+              className="mt-3 text-stone-600 text-sm font-medium"
             >
               Share →
             </button>
@@ -78,7 +78,7 @@ export default function SettingsPage() {
           <button
             onClick={showCoupleCode}
             disabled={loadingCode}
-            className="w-full py-3 rounded-2xl bg-pink-50 border border-pink-200 text-pink-600 font-medium text-sm transition-colors hover:bg-pink-100 disabled:opacity-60"
+            className="w-full py-3 rounded-2xl bg-orange-50 border border-orange-100 text-stone-600 font-medium text-sm transition-colors hover:bg-orange-100 disabled:opacity-60"
           >
             {loadingCode ? 'loading...' : 'show couple code'}
           </button>
@@ -105,7 +105,7 @@ export default function SettingsPage() {
 
       {/* sign out Confirmation */}
       {confirmSignOut && (
-        <div className="fixed inset-0 bg-black/40 flex items-end z-50">
+        <div className="fixed inset-0 bg-black/40 flex items-end z-[60]">
           <div className="w-full bg-white rounded-t-3xl p-6 space-y-4">
             <h3 className="font-semibold text-stone-800 text-center">sign out?</h3>
             <p className="text-stone-500 text-sm text-center">

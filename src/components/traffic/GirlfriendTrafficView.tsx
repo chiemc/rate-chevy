@@ -40,7 +40,7 @@ export default function GirlfriendTrafficView() {
   const [showAllEvents, setShowAllEvents] = useLocalStorage('showAll_traffic', false)
 
   if (loading || !data) {
-    return <div className="text-center py-12 text-stone-400">Loading...</div>
+    return <div className="text-center py-12 text-stone-400">loading...</div>
   }
 
   async function handleSet() {
@@ -102,7 +102,7 @@ export default function GirlfriendTrafficView() {
         <button
           onClick={handleSet}
           disabled={!selected || saving}
-          className="w-full py-3 rounded-2xl bg-pink-400 hover:bg-pink-500 active:bg-pink-600 text-white font-semibold transition-colors disabled:opacity-60"
+          className="w-full py-3 rounded-2xl bg-stone-600 hover:bg-stone-700 active:bg-stone-800 text-white font-semibold transition-colors disabled:opacity-60"
         >
           {saving ? 'setting...' : 'set status'}
         </button>

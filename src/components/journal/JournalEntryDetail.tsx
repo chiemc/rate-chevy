@@ -46,7 +46,7 @@ export default function JournalEntryDetail({ entry, onClose }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-orange-50 flex flex-col">
+    <div className="fixed inset-0 z-[60] bg-orange-50 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-4 border-b border-orange-100 bg-white">
         <button
@@ -59,7 +59,7 @@ export default function JournalEntryDetail({ entry, onClose }: Props) {
           <div className="flex gap-2">
             <button
               onClick={() => setEditing(true)}
-              className="text-pink-500 text-sm font-medium px-3 py-1.5 rounded-xl hover:bg-orange-50"
+              className="text-stone-600 text-sm font-medium px-3 py-1.5 rounded-xl hover:bg-orange-50"
             >
               edit
             </button>
@@ -115,7 +115,7 @@ export default function JournalEntryDetail({ entry, onClose }: Props) {
 
       {/* Delete confirmation */}
       {confirmDelete && (
-        <div className="absolute inset-0 bg-black/40 flex items-end">
+        <div className="fixed inset-0 bg-black/40 flex items-end z-[60]">
           <div className="w-full bg-white rounded-t-3xl p-6 space-y-4">
             <h3 className="font-semibold text-stone-800 text-center">delete this entry?</h3>
             <p className="text-stone-500 text-sm text-center">this can&apos;t be undone.</p>

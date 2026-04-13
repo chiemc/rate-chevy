@@ -16,7 +16,7 @@ export default function JournalPage() {
 
   if (loading) {
     return (
-      <div className="text-center py-12 text-stone-400">Loading journal...</div>
+      <div className="text-center py-12 text-stone-400">loading journal...</div>
     )
   }
 
@@ -40,7 +40,7 @@ export default function JournalPage() {
         {profile?.role === 'girlfriend' && (
           <button
             onClick={() => setWriting(true)}
-            className="w-10 h-10 rounded-2xl bg-pink-400 hover:bg-pink-500 active:bg-pink-600 text-white font-bold text-xl flex items-center justify-center shadow-sm transition-colors"
+            className="w-10 h-10 rounded-2xl bg-stone-600 hover:bg-stone-700 active:bg-stone-800 text-white font-bold text-xl flex items-center justify-center shadow-sm transition-colors"
           >
             +
           </button>

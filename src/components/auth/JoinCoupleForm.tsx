@@ -18,8 +18,12 @@ export default function JoinCoupleForm() {
     try {
       await joinCouple(user.uid, displayName.trim(), code.trim())
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
-    } finally {
+      const message = err instanceof Error ? err.message : ''
+      if (message.toLowerCase().includes('no couple found')) {
+        setError("that code doesn't exist, double check and try again")
+      } else {
+        setError('something went wrong, please try again')
+      }
       setLoading(false)
     }
   }
@@ -70,7 +74,7 @@ export default function JoinCoupleForm() {
         disabled={loading || !displayName.trim() || code.length !== 6}
         className="w-full py-3 rounded-2xl bg-stone-600 hover:bg-stone-700 active:bg-stone-800 text-white font-semibold transition-colors disabled:opacity-60"
       >
-        {loading ? 'joining...' : 'join couple'}
+        {loading ? 'joining...' : 'join jen'}
       </button>
     </div>
   )

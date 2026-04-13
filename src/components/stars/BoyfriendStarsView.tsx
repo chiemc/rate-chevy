@@ -11,7 +11,7 @@ export default function BoyfriendStarsView() {
   const [showAllEvents, setShowAllEvents] = useLocalStorage('showAll_stars', false)
 
   if (loading || !data) {
-    return <div className="text-center py-12 text-stone-400">Loading stars...</div>
+    return <div className="text-center py-12 text-stone-400">loading stars...</div>
   }
 
   return (

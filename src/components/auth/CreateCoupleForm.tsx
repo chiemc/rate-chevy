@@ -28,7 +28,7 @@ export default function CreateCoupleForm() {
     <div className="space-y-6">
       <div className="text-center">
         <div className="text-5xl mb-3">👑</div>
-        <h2 className="text-xl font-bold text-stone-800">begin your evaluation</h2>
+        <h2 className="text-xl font-bold text-stone-800">start your evaluating</h2>
         <p className="text-stone-500 text-sm mt-1">
           you have privileges chevy doesn't. enjoy!
         </p>
@@ -36,7 +36,7 @@ export default function CreateCoupleForm() {
 
       <div>
         <label className="block text-sm font-medium text-stone-700 mb-1">
-          your name
+          your desired name
         </label>
         <input
           type="text"

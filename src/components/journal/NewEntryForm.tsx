@@ -59,7 +59,7 @@ export default function NewEntryForm({ onClose, editEntry }: Props) {
         <button
           onClick={handleSave}
           disabled={saving || !body.trim()}
-          className="text-pink-500 text-sm font-semibold px-3 py-1.5 rounded-xl hover:bg-orange-50 disabled:opacity-40"
+          className="text-stone-600 text-sm font-semibold px-3 py-1.5 rounded-xl hover:bg-orange-50 disabled:opacity-40"
         >
           {saving ? 'saving...' : 'save'}
         </button>
