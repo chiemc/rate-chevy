@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can only read/write their own profile
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    match /couples/{coupleId} {
+
+      // Any authenticated user can read/query to look up a couple by its join code.
+      // The 6-char random code is the shared secret; membership is enforced on subcollections.
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      // Existing members can update freely; a non-member can update only to add themselves
+      // (i.e. joining: their uid ends up in the new members array and the array grew by 1).
+      allow update: if request.auth != null && (
+        request.auth.uid in resource.data.members ||
+        (request.auth.uid in request.resource.data.members &&
+         request.resource.data.members.size() == resource.data.members.size() + 1)
+      );
+
+      // For subcollections, resource is the subcollection document (not the couple doc),
+      // so we use get() to look up the couple document's members array instead.
+      function isMember() {
+        return request.auth != null &&
+          request.auth.uid in get(
+            /databases/$(database)/documents/couples/$(coupleId)
+          ).data.members;
+      }
+
+      function isGirlfriend() {
+        return request.auth != null &&
+          get(
+            /databases/$(database)/documents/users/$(request.auth.uid)
+          ).data.role == 'girlfriend';
+      }
+
+      match /stars/{docId} {
+        allow read: if isMember();
+        allow write: if isMember() && isGirlfriend();
+      }
+
+      match /starEvents/{eventId} {
+        allow read: if isMember();
+        allow write: if isMember() && isGirlfriend();
+      }
+
+      match /trafficLight/{docId} {
+        allow read: if isMember();
+        allow write: if isMember() && isGirlfriend();
+      }
+
+      match /trafficLightEvents/{eventId} {
+        allow read: if isMember();
+        allow write: if isMember() && isGirlfriend();
+      }
+
+      match /journalEntries/{entryId} {
+        allow read: if isMember();
+        allow write: if isMember() && isGirlfriend();
+      }
+    }
+  }
+}
