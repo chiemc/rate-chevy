@@ -50,7 +50,9 @@ export default function BoyfriendStarsView() {
           <span className="text-6xl font-bold text-stone-600">{data.revokedStars ?? 0}</span>
           <span className="text-5xl">❌</span>
         </div>
-        <p className="text-stone-400 text-sm mt-3">smh do better</p>
+        <p className="text-stone-400 text-sm mt-3">
+          {(data.revokedStars ?? 0) === 0 ? "okay you're doing good" : 'smh do better. minimize revokes'}
+        </p>
       </div>
 
       {/* Recent Activity */}
