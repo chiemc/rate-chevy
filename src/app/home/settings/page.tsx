@@ -63,12 +63,12 @@ export default function SettingsPage() {
         </h2>
         {coupleCode ? (
           <div className="text-center">
-            <p className="text-stone-500 text-sm mb-2">share this with Chevy:</p>
+            <p className="text-stone-500 text-sm mb-2">share this with chevy:</p>
             <p className="text-3xl font-bold tracking-widest text-pink-500 bg-pink-50 py-3 rounded-2xl">
               {coupleCode}
             </p>
             <button
-              onClick={() => navigator.share?.({ title: 'join my shit', text: `use code ${coupleCode} so i can monitor your behavior boy` })}
+              onClick={() => navigator.share?.({ title: 'ratingchevy.com', text: `ratingchevy.com use code ${coupleCode} so i can monitor your behavior boy` })}
               className="mt-3 text-pink-500 text-sm font-medium"
             >
               Share →
