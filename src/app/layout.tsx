@@ -7,15 +7,16 @@ const geist = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'rate chevy',
-  description: 'A couples app for gold stars, traffic lights, and heartfelt feedback',
+  description: 'an app from chevy to jen',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Five Star',
+    title: 'rate chevy',
   },
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👩🏻‍❤️‍💋‍👨🏻</text></svg>',
+    apple: "/apple_icon.png",
   },
 }
 

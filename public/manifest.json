@@ -1,7 +1,7 @@
 {
-  "name": "Five Star App",
-  "short_name": "Five Star",
-  "description": "A couples app for gold stars, traffic lights, and heartfelt feedback",
+  "name": "rating chevy",
+  "short_name": "rate chevy",
+  "description": "an app built with love from chevy to jen",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fffbf0",
@@ -9,16 +9,9 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "/apple_icon.png",
+      "sizes": "2048x2048",
+      "type": "image/png"
     }
   ]
 }
