@@ -46,3 +46,17 @@ export interface JournalEntry {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface JournalComment {
+  id: string
+  authorId: string
+  body: string
+  replyToId?: string
+  createdAt: Date
+}
+
+export interface FlowersData {
+  gotFlowers: boolean | null
+  weekOf: string
+  updatedAt: Date
+}

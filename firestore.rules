@@ -60,6 +60,16 @@ service cloud.firestore {
       match /journalEntries/{entryId} {
         allow read: if isMember();
         allow write: if isMember() && isGirlfriend();
+
+        match /comments/{commentId} {
+          allow read: if isMember();
+          allow write: if isMember();
+        }
+      }
+
+      match /flowers/{docId} {
+        allow read: if isMember();
+        allow write: if isMember() && isGirlfriend();
       }
     }
   }

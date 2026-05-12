@@ -4,11 +4,14 @@ import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { useStars } from '@/hooks/useStars'
+import { useFlowers } from '@/hooks/useFlowers'
 import StarRating from './StarRating'
 
 export default function GirlfriendStarsView() {
   const { profile } = useAuth()
   const { data, events, loading, setRating, awardStar, revokeStar } = useStars(profile!.coupleId)
+  const { data: flowersData, setFlowers } = useFlowers(profile!.coupleId)
+  const [settingFlowers, setSettingFlowers] = useState(false)
   const [ratingNote, setRatingNote] = useState('')
   const [awardNote, setAwardNote] = useState('')
   const [revokeNote, setRevokeNote] = useState('')
@@ -50,6 +53,12 @@ export default function GirlfriendStarsView() {
     await revokeStar(revokeNote.trim() || null)
     setRevokeNote('')
     setRevoking(false)
+  }
+
+  async function handleFlowers(got: boolean) {
+    setSettingFlowers(true)
+    await setFlowers(got)
+    setSettingFlowers(false)
   }
 
   return (
@@ -136,6 +145,50 @@ export default function GirlfriendStarsView() {
         >
           {revoking ? '❌ Revoking...' : '❌ revoke a brownie point'}
         </button>
+      </div>
+
+      {/* Flowers This Week */}
+      <div className="bg-white rounded-3xl p-6 shadow-sm border border-orange-100">
+        <h2 className="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-4">
+          did he get me flowers this week?
+        </h2>
+        <div className="flex flex-col items-center gap-3">
+          {flowersData?.gotFlowers !== null && flowersData?.gotFlowers !== undefined ? (
+            <p className="text-stone-500 text-sm mb-1">
+              marked as{' '}
+              <span className={flowersData.gotFlowers ? 'text-emerald-600 font-semibold' : 'text-rose-500 font-semibold'}>
+                {flowersData.gotFlowers ? 'yes 💐' : 'no 🙄'}
+              </span>{' '}
+              this week — tap to change
+            </p>
+          ) : (
+            <p className="text-stone-400 text-sm mb-1">not marked yet this week</p>
+          )}
+          <div className="flex gap-3 w-full">
+            <button
+              onClick={() => handleFlowers(true)}
+              disabled={settingFlowers}
+              className={`flex-1 py-3 rounded-2xl font-semibold transition-colors disabled:opacity-50 ${
+                flowersData?.gotFlowers === true
+                  ? 'bg-emerald-500 text-white'
+                  : 'bg-stone-100 text-stone-700 hover:bg-emerald-50'
+              }`}
+            >
+              yes 💐
+            </button>
+            <button
+              onClick={() => handleFlowers(false)}
+              disabled={settingFlowers}
+              className={`flex-1 py-3 rounded-2xl font-semibold transition-colors disabled:opacity-50 ${
+                flowersData?.gotFlowers === false
+                  ? 'bg-rose-400 text-white'
+                  : 'bg-stone-100 text-stone-700 hover:bg-rose-50'
+              }`}
+            >
+              no 🙄
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Recent Activity */}

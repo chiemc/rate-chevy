@@ -3,11 +3,13 @@
 import { useAuth } from '@/contexts/AuthContext'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { useStars } from '@/hooks/useStars'
+import { useFlowers } from '@/hooks/useFlowers'
 import StarRating from './StarRating'
 
 export default function BoyfriendStarsView() {
   const { profile } = useAuth()
   const { data, events, loading } = useStars(profile!.coupleId)
+  const { data: flowersData } = useFlowers(profile!.coupleId)
   const [showAllEvents, setShowAllEvents] = useLocalStorage('showAll_stars', false)
 
   if (loading || !data) {
@@ -53,6 +55,33 @@ export default function BoyfriendStarsView() {
         <p className="text-stone-400 text-sm mt-3">
           {(data.revokedStars ?? 0) === 0 ? "okay you're doing good" : 'smh do better. minimize revokes'}
         </p>
+      </div>
+
+      {/* Flowers This Week */}
+      <div className="bg-white rounded-3xl p-6 shadow-sm border border-orange-100 text-center">
+        <h2 className="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-4">
+          Flowers This Week
+        </h2>
+        {flowersData?.gotFlowers === true && (
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-5xl">💐</span>
+            <p className="text-emerald-600 font-semibold text-base mt-1">yes</p>
+            <p className="text-stone-400 text-sm">good job boy</p>
+          </div>
+        )}
+        {flowersData?.gotFlowers === false && (
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-5xl">🥀</span>
+            <p className="text-rose-500 font-semibold text-base mt-1">no</p>
+            <p className="text-stone-400 text-sm">lock in bro go get her flowers</p>
+          </div>
+        )}
+        {(flowersData?.gotFlowers === null || flowersData?.gotFlowers === undefined) && (
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-5xl">🌸</span>
+            <p className="text-stone-400 text-sm mt-1">not marked yet this week</p>
+          </div>
+        )}
       </div>
 
       {/* Recent Activity */}
