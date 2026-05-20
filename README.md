@@ -1,4 +1,4 @@
-#rate chevy
+# rate chevy
 
 A personalized real-time couples app featuring role-based views, a mood journal, a rating system, and a suite of daily check-ins.
 
